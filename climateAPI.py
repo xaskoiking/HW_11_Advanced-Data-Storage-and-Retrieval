@@ -39,7 +39,10 @@ def home():
         f"(1)  /api/v1.0/precipitation/StartDate/EndDate  (Date Format = YYYY-MM-DD)<br>"
         f"</br>"
         f"(2)  /api/v1.0/stations<br>"
-        
+        f"</br>"
+        f"(3)  /api/v1.0/tobs<br>"
+        f"</br>"
+        f"(4)  /api/v1.0/<startDate><br>"
     )
 
 
@@ -72,7 +75,7 @@ def getStations():
 
     return jsonify(all_names)
 
-# 11. Get the temperature for year 2017
+# 11. Get the temperature for the start and end date
 @app.route("/api/v1.0/tobs/<startDate>/<endDate>")
 def getTempObs(startDate,endDate):
     """Return the date and temperateure for 2017"""
