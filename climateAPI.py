@@ -84,6 +84,23 @@ def getTempObs(startDate,endDate):
 
     return jsonify(all_names)
 
+# 12. Get the temperature stats for given date
+@app.route("/api/v1.0/<startDate>/<endDate>")
+@app.route("/api/v1.0/<startDate>")
+def getTempStats(startDate,endDate='2018-31-12'):
+    """Return temperature stats"""
+    #If end date is not given
+    if endDate == '2018-31-12':
+            results = session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
+           filter(Measurement.date >= startDate).all()
+    else:   
+    # Query all the date and the temperature details og
+        results = session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
+            filter(Measurement.date >= startDate).filter(Measurement.date <= endDate).all()
+       # Convert list of tuples into normal list
+    
+    all_names = list(np.ravel(results))
+    return jsonify(all_names)
 
 if __name__ == "__main__":
     app.run(debug=True)
