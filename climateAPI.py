@@ -33,8 +33,8 @@ app = Flask(__name__)
 @app.route("/")
 def home():
     return (
-        f"Welcome to Climate Tracker  API!<br/>"
-        f"Available Routes:<br/>"
+        f"<b>Welcome to Climate Tracker  API!</b><br/>"
+        f"<u>Available Routes:</u><br/>"
         f"</br>"
         f"(1)  /api/v1.0/precipitation/StartDate/EndDate  (Date Format = YYYY-MM-DD)<br>"
         f"</br>"
@@ -42,7 +42,7 @@ def home():
         f"</br>"
         f"(3)  /api/v1.0/tobs<br>"
         f"</br>"
-        f"(4)  /api/v1.0/<startDate><br>"
+        f"(4)  /api/v1.0/<startDate><br> <i> Enter start and end date </i> "
     )
 
 
