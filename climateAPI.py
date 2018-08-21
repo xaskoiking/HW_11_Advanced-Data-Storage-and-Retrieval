@@ -72,5 +72,18 @@ def getStations():
 
     return jsonify(all_names)
 
+# 11. Get the temperature for year 2017
+@app.route("/api/v1.0/tobs/<startDate>/<endDate>")
+def getTempObs(startDate,endDate):
+    """Return the date and temperateure for 2017"""
+    # Query all the date and the temperature details
+    results = session.query(Measurement.tobs).\
+        filter(Measurement.date >= startDate).filter(Measurement.date <= endDate).all()
+       # Convert list of tuples into normal list
+    all_names = list(np.ravel(results))
+
+    return jsonify(all_names)
+
+
 if __name__ == "__main__":
     app.run(debug=True)
